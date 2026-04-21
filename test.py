@@ -1,9 +1,6 @@
-import os
+import sqlite3
 
-password = "admin123"
-api_key = "secret-key"
-
-def run(cmd):
-    os.system(cmd)
-
-print(password)
+def get_user(username):
+    conn = sqlite3.connect("test.db")
+    query = "SELECT * FROM users WHERE name = '" + username + "'"  # SQLi
+    return conn.execute(query).fetchall()
